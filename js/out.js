@@ -137,7 +137,7 @@ var App = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(_MyTry2.default, null)
+                _react2.default.createElement(_MyTry2.default, { pictures: ['https://4.allegroimg.com/s512/035596/56c3d7e94d81ae7c0de5f8c015d4ttp://www.visitsi.com/webware/account_docs/images/selogo_121517_114500.jpg', 'https://lh3.googleusercontent.com/O5T5bSXb9FO8kank66J3c4UoQakzouc6z70HD78ocGSRik5Gpu87bmmgrSBY10YEjDTB4tw=s85', 'https://samequizy.pl/wp-content/uploads/2016/03/filing_images_d874ba82a72e.jpeg', 'https://cdn.prezenty.pl/media/catalog/product/cache/8/image/9df78eab33525d08d6e5fb8d27136e95/o/d/odswiezacz-powietrza-emotikon-prezenty-pl_8114-76d37129.jpeg', 'https://www.telegraph.co.uk/content/dam/technology/2017/11/01/emoji_update_2017_12_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.png?imwidth=450', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy2N1Ae0WYsv0tw3NOZ4HLKIm8aS8GypCFZhO0dKJ1Xd4FW9Scrw'] })
             );
         }
     }]);
@@ -270,7 +270,7 @@ exports.default = FizzBuzz;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -285,6 +285,8 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -292,83 +294,93 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var MyTry = function (_React$Component) {
-  _inherits(MyTry, _React$Component);
+    _inherits(MyTry, _React$Component);
 
-  function MyTry() {
-    _classCallCheck(this, MyTry);
+    function MyTry(props) {
+        _classCallCheck(this, MyTry);
 
-    var _this = _possibleConstructorReturn(this, (MyTry.__proto__ || Object.getPrototypeOf(MyTry)).call(this));
+        var _this = _possibleConstructorReturn(this, (MyTry.__proto__ || Object.getPrototypeOf(MyTry)).call(this, props));
 
-    _this.getRandomIcon = function () {
-      var somepic = ['https://4.allegroimg.com/s512/035596/56c3d7e94d81ae7c0de5f8c015d4ttp://www.visitsi.com/webware/account_docs/images/selogo_121517_114500.jpg', 'https://lh3.googleusercontent.com/O5T5bSXb9FO8kank66J3c4UoQakzouc6z70HD78ocGSRik5Gpu87bmmgrSBY10YEjDTB4tw=s85', 'https://samequizy.pl/wp-content/uploads/2016/03/filing_images_d874ba82a72e.jpeg', 'https://cdn.prezenty.pl/media/catalog/product/cache/8/image/9df78eab33525d08d6e5fb8d27136e95/o/d/odswiezacz-powietrza-emotikon-prezenty-pl_8114-76d37129.jpeg', 'https://www.telegraph.co.uk/content/dam/technology/2017/11/01/emoji_update_2017_12_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.png?imwidth=450', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy2N1Ae0WYsv0tw3NOZ4HLKIm8aS8GypCFZhO0dKJ1Xd4FW9Scrw'];
+        _this.getRandomIcon = function () {
+            var somepic = _this.props.pictures;
+            var randomNumber = Math.floor(Math.random() * somepic.length);
+            return somepic[randomNumber];
+        };
 
-      var randomNumber = Math.floor(Math.random() * somepic.length);
-      return somepic[randomNumber];
-    };
+        _this.addSomething = function () {
+            var i = _this.state.counter;
+            var icon = _this.getRandomIcon();
+            _this.setState({
+                someIcon: [].concat(_toConsumableArray(_this.state.someIcon), [icon])
+            });
+        };
 
-    _this.addSomething = function () {
+        _this.removeSomething = function () {
+            var allIcons = _this.state.someIcon.reverse();
+            _this.setState({
+                someIcon: _this.state.someIcon.slice(1, allIcons.length)
+            });
+        };
 
-      var i = _this.state.counter;
-      var icon = _this.getRandomIcon();
+        _this.increment = function () {
+            _this.setState({
+                counter: ++_this.state.counter
+            });
+            _this.addSomething();
+        };
 
-      i % 2 === 0 ? _this.setState({
-        someIcon: icon
-      }) : '';
-    };
+        _this.decrement = function () {
+            _this.setState({
+                counter: --_this.state.counter
+            });
+            _this.removeSomething();
+        };
 
-    _this.increment = function () {
-      _this.setState({ counter: ++_this.state.counter });
-      _this.addSomething();
-    };
+        _this.state = {
+            someIcon: [],
+            counter: 0
+        };
 
-    _this.decrement = function () {
-      _this.setState({ counter: --_this.state.counter });
-      _this.addSomething();
-    };
-
-    _this.state = {
-      someIcon: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0NDQ0NDQ0NDQ0NDQ0NDQ0NDRANDQ0NFREWFhURFRUYHSggGBoxGxUVITEhJSkrLi46Fx8/ODM4NygtOisBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAOEA4QMBIgACEQEDEQH/xAAWAAEBAQAAAAAAAAAAAAAAAAAAAQf/xAAVEAEBAAAAAAAAAAAAAAAAAAAAEf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAqAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACiAKAIKAgoCAAAAAAAoIAAAAAAKAgKCAoICgIACoAoiggAAAAAAAAAAAAAAAAAAAAAAAAAAACoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoIAAKgAAAAAAAAAAAAAAAAAAAAAAAAAAKgAogCiAAAAAAAAqAAAAAAAAAAAAAAAKiggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAqAAAAAAAAAAAAAAAAAAAAAAAAAAAKgACgioAAAAAAAqKgKgACoAKgAAKgAAAAAoAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKAgAAAAAAAAAAAAAAAAACgAgACgIAD/2Q==',
-      counter: 0
-    };
-
-    return _this;
-  }
-
-  _createClass(MyTry, [{
-    key: 'render',
-    value: function render() {
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'p',
-          null,
-          'Let\'s see what we have :D'
-        ),
-        _react2.default.createElement(
-          'button',
-          { type: 'button', onClick: this.increment },
-          '+'
-        ),
-        _react2.default.createElement(
-          'button',
-          { type: 'button', onClick: this.decrement },
-          '-'
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'div',
-          null,
-          this.state.counter,
-          _react2.default.createElement('img', { width: '100px', height: '100px', src: this.state.someIcon })
-        )
-      );
+        return _this;
     }
-  }]);
 
-  return MyTry;
+    _createClass(MyTry, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'p',
+                    null,
+                    'Let\'s see what we have :D'
+                ),
+                _react2.default.createElement(
+                    'button',
+                    { type: 'button', onClick: this.increment },
+                    '+'
+                ),
+                _react2.default.createElement(
+                    'button',
+                    { type: 'button', onClick: this.decrement },
+                    '-'
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement('br', null),
+                this.state.someIcon.map(function (elem, i) {
+                    return _react2.default.createElement(
+                        'div',
+                        { key: i },
+                        'Icon number: ',
+                        i,
+                        _react2.default.createElement('img', { width: '100px', height: '100px', src: elem })
+                    );
+                })
+            );
+        }
+    }]);
+
+    return MyTry;
 }(_react2.default.Component);
 
 exports.default = MyTry;
